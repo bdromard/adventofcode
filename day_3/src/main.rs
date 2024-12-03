@@ -3,9 +3,7 @@ fn main() {
     fn multiply(m: &str) -> i32 {
         let result = m.replace("mul(", "").replace(')', "");
         let split: Vec<&str> = result.split(',').collect();
-        let first_number: i32 = str::parse(split[0]).unwrap();
-        let second_number: i32 = str::parse(split[1]).unwrap();
-        first_number * second_number
+        split.iter().map(|s| s.parse::<i32>().unwrap()).product()
     }
     fn first_part() {
         let pattern = Regex::new(r"mul\(\d*,\d*\)").unwrap();
@@ -35,12 +33,7 @@ fn main() {
                 }
             }
         });
-        let result: i32 = good_matches
-            .into_iter()
-            .map(|m| {
-                multiply(m)
-            })
-            .sum();
+        let result: i32 = good_matches.into_iter().map(multiply).sum();
         println!("{result:}")
     }
     second_part();
