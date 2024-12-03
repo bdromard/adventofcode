@@ -12,5 +12,5 @@ fn main() {
             first_number * second_number
         })
         .sum();
-    println!("{:?}", result);
+    println!("{:}", result);
 }
